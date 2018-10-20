@@ -72,7 +72,8 @@ class DatosEntrenamiento:
             return 0
 
     def limpiarDatos(self):
-        print("borrar datos de matriz")
+        #borrar datos de matriz
+        self.matrizDatos = np.empty((0,3), float)
 
 
 

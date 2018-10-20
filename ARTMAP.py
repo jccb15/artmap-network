@@ -12,9 +12,20 @@ class RedArtmap:
         self.epsilon = epsilon
         self.pesos = []
         self.categorias = []
+        self.valoresActivacion = []
 
     def entrenar(self, datos):
-        print("")
+        for dato in datos:
+            print (dato)
+            entradaAumentada = self.calcularEntradaAumentada(dato[0], dato[1])
+            
+            if dato[2] not in self.categorias:
+                self.categorias.append(dato[2])
+                self.pesos.append(entradaAumentada) 
+                self.valoresActivacion.append(None)
+            
+            else:
+                print()
 
 
     def predecir(self, x, y):
@@ -58,6 +69,8 @@ class DatosEntrenamiento:
             
             #La matriz de datos de entrenamiento se estructura de esta forma [[dato x, dato y, etiqueta], [ , , ]]
             self.matrizDatos = np.append(self.matrizDatos,([[x, y, self.estaDentro(x,y)]]), axis=0)
+        
+        return self.matrizDatos
 
     def ingresarDatoManual(self, x, y, categoria):
         self.matrizDatos = np.append(self.matrizDatos,([[x, y, categoria]]), axis=0)

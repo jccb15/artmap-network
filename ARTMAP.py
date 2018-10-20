@@ -10,14 +10,15 @@ class RedArtmap:
         self.alpha = alpha
         self.pesos = Pesos()
 
-    def entrenar(self, Datos):
-        print("")     
+    def entrenar(self, datos):
+        print("")            
 
     def predecir(self, x, y):
         print("")
     
     def calcularComplemento(self, x, y):
-        print("")
+        complemento = [x, y, 1-x, 1-y]
+        return complemento
 
     def calcularValorActivacion(self, entradaAumentada):
         print("")
@@ -42,7 +43,6 @@ class Resultados:
 
 
 class DatosEntrenamiento:
-    #matrizDatos = np.empty((0,3))
 
     def __init__(self, radio = .25, centroX = .5, centroY = .5):
         self.matrizDatos = np.empty((0,3), float)

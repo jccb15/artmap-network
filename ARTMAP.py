@@ -11,19 +11,25 @@ class RedArtmap:
         self.beta = beta
         self.epsilon = epsilon
         self.pesos = Pesos()
+        self.categorias = np.empty()
 
     def entrenar(self, datos):
-        print("")            
+        print("")
+
 
     def predecir(self, x, y):
         print("")
     
-    def calcularComplemento(self, x, y):
+    def calcularEntradaAumentada(self, x, y):
         complemento = [x, y, 1-x, 1-y]
         return complemento
 
-    def calcularValorActivacion(self, entradaAumentada):
+    def calcularFuncionActivacion(self, entradaAumentada, nodo):
         print("")
+
+    def calcularMatchFunction(self, entradaAumentada, nodo):
+        print("")
+    
 
 
 class Pesos:
@@ -32,7 +38,9 @@ class Pesos:
         self.matrizPesos = np.empty
 
     def actualizarPesos(self):
-        print("")     
+        print("")
+
+    def calcularAndDifuso
 
 
 class Resultados:
@@ -60,10 +68,11 @@ class DatosEntrenamiento:
             x = random.uniform(0, 1)
             y = random.uniform(0, 1)
             
+            #La matriz de datos de entrenamiento se estructura de esta forma [[dato x, dato y, etiqueta], [ , , ]]
             self.matrizDatos = np.append(self.matrizDatos,([[x, y, self.estaDentro(x,y)]]), axis=0)
 
-    def ingresarDatoManual(self, x, y, clase):
-        self.matrizDatos = np.append(self.matrizDatos,([[x, y, clase]]), axis=0)
+    def ingresarDatoManual(self, x, y, categoria):
+        self.matrizDatos = np.append(self.matrizDatos,([[x, y, categoria]]), axis=0)
 
     def estaDentro(self, x, y):
         distancia = math.sqrt((x - self.centroX)**2 + (y - self.centroY)**2)

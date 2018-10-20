@@ -42,9 +42,10 @@ class Resultados:
 
 
 class DatosEntrenamiento:
-    #matrizDatos = np.array([1,2,3])
+    #matrizDatos = np.empty((0,3))
+
     def __init__(self, radio = .25, centroX = .5, centroY = .5):
-        self.matrizDatos = np.zeros([1,3],dtype=float)
+        self.matrizDatos = np.empty((0,3), float)
         self.radio = radio
         self.centroX = centroX
         self.centroY = centroY
@@ -57,7 +58,7 @@ class DatosEntrenamiento:
             x = random.uniform(0, 1)
             y = random.uniform(0, 1)
             
-            np.append(self.matrizDatos, [x , y , self.estaDentro(x,y)], 0)
+            self.matrizDatos = np.append(self.matrizDatos,([[x, y, self.estaDentro(x,y)]]), axis=0)
 
     def ingresarDatoManual(self, x, y, clase):
         print("recibe dos puntos y si esta dentro o fuera y agrega a la matriz")

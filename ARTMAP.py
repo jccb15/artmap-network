@@ -87,5 +87,23 @@ class DatosEntrenamiento:
         #borrar datos de matriz
         self.matrizDatos = np.empty((0,3), float)
 
+class Utilidades:
 
+    def andDifuso(self, arr1, arr2):
+        if len(arr1) == len(arr2):
+            resultado = []
+            for i in range(len(arr1)):
+                if arr1[i] > arr2[i]:
+                    resultado.append(arr2[i])
+                else:
+                    resultado.append(arr1[i])
+            return resultado
+        else:
+            print("andDifuso: los arreglos no son del mismo tamaño")
+
+    def sumatoria(self, arr):
+        suma=0
+        for valor in arr:
+            suma+=valor
+        return suma
 

@@ -10,8 +10,8 @@ class RedArtmap:
         self.alpha = alpha
         self.beta = beta
         self.epsilon = epsilon
-        self.pesos = Pesos()
-        self.categorias = np.empty()
+        self.pesos = []
+        self.categorias = []
 
     def entrenar(self, datos):
         print("")
@@ -30,18 +30,6 @@ class RedArtmap:
     def calcularMatchFunction(self, entradaAumentada, nodo):
         print("")
     
-
-
-class Pesos:
-
-    def __init__(self):
-        self.matrizPesos = np.empty
-
-    def actualizarPesos(self):
-        print("")
-
-    def calcularAndDifuso
-
 
 class Resultados:
 

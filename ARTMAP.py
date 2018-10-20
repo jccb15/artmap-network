@@ -5,9 +5,11 @@ import random
 
 class RedArtmap:
 
-    def __init__(self, rho = .5, alpha = .0000001):
+    def __init__(self, rho = .5, alpha = .0000001, beta = 1, epsilon = .001 ):
         self.rho = rho
         self.alpha = alpha
+        self.beta = beta
+        self.epsilon = epsilon
         self.pesos = Pesos()
 
     def entrenar(self, datos):

@@ -52,7 +52,7 @@ class DatosEntrenamiento:
 
     def generarDatosEntrenamiento(self, cantidad = 1000):
         #genera n pares de puntos aleatorios entre 0-1 y llama clase estaDentro, agrega a la matriz de datos de entranamiento
-        #self.limpiarDatos()
+        self.limpiarDatos()
 
         for i in range(cantidad):
             x = random.uniform(0, 1)
@@ -61,7 +61,7 @@ class DatosEntrenamiento:
             self.matrizDatos = np.append(self.matrizDatos,([[x, y, self.estaDentro(x,y)]]), axis=0)
 
     def ingresarDatoManual(self, x, y, clase):
-        print("recibe dos puntos y si esta dentro o fuera y agrega a la matriz")
+        self.matrizDatos = np.append(self.matrizDatos,([[x, y, clase]]), axis=0)
 
     def estaDentro(self, x, y):
         distancia = math.sqrt((x - self.centroX)**2 + (y - self.centroY)**2)

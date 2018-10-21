@@ -25,10 +25,17 @@ class RedArtmap:
                 self.valoresActivacion.append(None)
             
             else:
-                valorActivacion = self.calcularFuncionActivacion(entradaAumentada, self.pesos[self.categorias.index(dato[2])])
-                self.valoresActivacion.append(valorActivacion)
+                for idx, peso in enumerate(self.pesos):
+                    valorActivacion = self.calcularFuncionActivacion(entradaAumentada, peso)
+                    self.valoresActivacion[idx] = valorActivacion
+                
+                indiceNodoGanador = self.valoresActivacion.index(max(self.valoresActivacion))
+                peso = self.pesos[indiceNodoGanador]
 
-                valorCoincidencia = self.calcularFuncionCoincidencia(entradaAumentada, self.pesos[self.categorias.index(dato[2])])
+                if self.categorias[indiceNodoGanador] == dato[2]:
+                    
+
+                valorCoincidencia = self.calcularFuncionCoincidencia(entradaAumentada, peso)
                 if valorCoincidencia >= self.rho:
                     nuevoPeso = self.calcularNuevoPeso(entradaAumentada, self.pesos[self.categorias.index(dato[2])])
                     self.pesos[self.categorias.index(dato[2])] = nuevoPeso

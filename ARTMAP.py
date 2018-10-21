@@ -35,9 +35,10 @@ class RedArtmap:
         complemento = [x, y, 1-x, 1-y]
         return complemento
 
-    def calcularFuncionActivacion(self, entradaAumentada, nodo):
-        print("")
-
+    def calcularFuncionActivacion(self, entradaAumentada, pesoPrevio):
+        valorActivacion = Utilidades.sumatoria(Utilidades.andDifuso(entradaAumentada, pesoPrevio)) / (self.alpha + Utilidades.sumatoria(pesoPrevio))
+        return valorActivacion
+        
     def calcularMatchFunction(self, entradaAumentada, nodo):
         print("")
     
@@ -89,9 +90,10 @@ class DatosEntrenamiento:
 
 class Utilidades:
 
-    def andDifuso(self, arr1, arr2):
+    @staticmethod
+    def andDifuso(arr1, arr2):
+        resultado = []
         if len(arr1) == len(arr2):
-            resultado = []
             for i in range(len(arr1)):
                 if arr1[i] > arr2[i]:
                     resultado.append(arr2[i])
@@ -101,7 +103,8 @@ class Utilidades:
         else:
             print("andDifuso: los arreglos no son del mismo tamaño")
 
-    def sumatoria(self, arr):
+    @staticmethod
+    def sumatoria(arr):
         suma=0
         for valor in arr:
             suma+=valor

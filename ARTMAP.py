@@ -16,7 +16,7 @@ class RedArtmap:
 
     def entrenar(self, datos):
         for dato in datos:
-            print (dato)
+            #print (dato)
             entradaAumentada = self.calcularEntradaAumentada(dato[0], dato[1])
             
             if dato[2] not in self.categorias:
@@ -59,7 +59,7 @@ class RedArtmap:
         entradaAumentada = self.calcularEntradaAumentada(x, y)
         valActivacion = []
 
-        for idx, peso in enumerate(self.pesos):
+        for peso in self.pesos:
             valorActivacion = self.calcularFuncionActivacion(entradaAumentada, peso)
             valActivacion.append(valorActivacion)
         
@@ -78,7 +78,7 @@ class RedArtmap:
         return valorCoincidencia
 
     def calcularNuevoPeso(self, entradaAumentada, pesoPrevio):
-        primero = [x * self.beta for x in entradaAumentada]
+        primero = [x * self.beta for x in Utilidades.andDifuso(entradaAumentada,pesoPrevio)]
         segundo = [x * (1-self.beta) for x in pesoPrevio]
         nuevoPeso = []
 
@@ -97,7 +97,7 @@ class Resultados:
 
 class DatosEntrenamiento:
 
-    def __init__(self, radio = .25, centroX = .5, centroY = .5):
+    def __init__(self, radio = .398942, centroX = .5, centroY = .5):
         self.matrizDatos = np.empty((0,3), float)
         self.radio = radio
         self.centroX = centroX

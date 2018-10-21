@@ -25,7 +25,8 @@ class RedArtmap:
                 self.valoresActivacion.append(None)
             
             else:
-                print()
+                valorActivacion = self.calcularFuncionActivacion(entradaAumentada, self.pesos[self.categorias.index(dato[2])])
+                self.valoresActivacion.append(valorActivacion)
 
 
     def predecir(self, x, y):
@@ -39,9 +40,9 @@ class RedArtmap:
         valorActivacion = Utilidades.sumatoria(Utilidades.andDifuso(entradaAumentada, pesoPrevio)) / (self.alpha + Utilidades.sumatoria(pesoPrevio))
         return valorActivacion
         
-    def calcularMatchFunction(self, entradaAumentada, nodo):
-        print("")
-    
+    def calcularFuncionCoincidencia(self, entradaAumentada, pesoPrevio):
+        valorCoincidencia = Utilidades.sumatoria(Utilidades.andDifuso(entradaAumentada, pesoPrevio)) / Utilidades.sumatoria(entradaAumentada    )
+        return valorCoincidencia
 
 class Resultados:
 

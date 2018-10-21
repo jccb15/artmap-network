@@ -1,5 +1,5 @@
 import ARTMAP as am
 
-x = am.RedArtmap()
+red = am.RedArtmap()
 
-print(x.calcularComplemento(.2,.3))
+print(red.calcularMatchFunction([.3, .8, .7, .2], [.7, .7, .3, .3]))

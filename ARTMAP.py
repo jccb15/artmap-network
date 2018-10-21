@@ -56,7 +56,14 @@ class RedArtmap:
 
 
     def predecir(self, x, y):
-        print("")
+        entradaAumentada = self.calcularEntradaAumentada(x, y)
+        valActivacion = []
+
+        for idx, peso in enumerate(self.pesos):
+            valorActivacion = self.calcularFuncionActivacion(entradaAumentada, peso)
+            valActivacion.append(valorActivacion)
+        
+        return self.categorias[valActivacion.index(max(valActivacion))]
     
     def calcularEntradaAumentada(self, x, y):
         complemento = [x, y, 1-x, 1-y]

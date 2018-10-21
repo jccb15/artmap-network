@@ -29,18 +29,31 @@ class RedArtmap:
                     valorActivacion = self.calcularFuncionActivacion(entradaAumentada, peso)
                     self.valoresActivacion[idx] = valorActivacion
                 
-                indiceNodoGanador = self.valoresActivacion.index(max(self.valoresActivacion))
-                peso = self.pesos[indiceNodoGanador]
+                valoresActivacionDescendente = self.valoresActivacion.copy()
+                valoresActivacionDescendente.sort(reverse=True)
 
-                if self.categorias[indiceNodoGanador] == dato[2]:
+                valorEncontrado = False
+                for valorActivacion in valoresActivacionDescendente:
                     
+                    indiceNodoGanador = self.valoresActivacion.index(valorActivacion)
+                    peso = self.pesos[indiceNodoGanador]
+                    valorCoincidencia = self.calcularFuncionCoincidencia(entradaAumentada, peso)
 
-                valorCoincidencia = self.calcularFuncionCoincidencia(entradaAumentada, peso)
-                if valorCoincidencia >= self.rho:
-                    nuevoPeso = self.calcularNuevoPeso(entradaAumentada, self.pesos[self.categorias.index(dato[2])])
-                    self.pesos[self.categorias.index(dato[2])] = nuevoPeso
+                    if valorCoincidencia > self.rho:
+                        if self.categorias[indiceNodoGanador] == dato[2]:
 
-                    
+                            nuevoPeso = self.calcularNuevoPeso(entradaAumentada, peso)
+                            self.pesos[indiceNodoGanador] = nuevoPeso
+                            valorEncontrado = True
+                            break
+                        else:
+                            self.rho = valorCoincidencia + self.epsilon
+                
+                if valorEncontrado == False:
+                    self.pesos.append(entradaAumentada)
+                    self.categorias.append(dato[2])
+                    self.valoresActivacion.append(None)
+
 
     def predecir(self, x, y):
         print("")
@@ -60,8 +73,8 @@ class RedArtmap:
     def calcularNuevoPeso(self, entradaAumentada, pesoPrevio):
         primero = [x * self.beta for x in entradaAumentada]
         segundo = [x * (1-self.beta) for x in pesoPrevio]
-
         nuevoPeso = []
+
         for i in range(len(entradaAumentada)):
             nuevoPeso.append(primero[i] + segundo[i])
         return nuevoPeso

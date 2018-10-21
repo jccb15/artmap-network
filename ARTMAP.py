@@ -28,6 +28,12 @@ class RedArtmap:
                 valorActivacion = self.calcularFuncionActivacion(entradaAumentada, self.pesos[self.categorias.index(dato[2])])
                 self.valoresActivacion.append(valorActivacion)
 
+                valorCoincidencia = self.calcularFuncionCoincidencia(entradaAumentada, self.pesos[self.categorias.index(dato[2])])
+                if valorCoincidencia >= self.rho:
+                    nuevoPeso = self.calcularNuevoPeso(entradaAumentada, self.pesos[self.categorias.index(dato[2])])
+                    self.pesos[self.categorias.index(dato[2])] = nuevoPeso
+
+                    
 
     def predecir(self, x, y):
         print("")
@@ -43,6 +49,15 @@ class RedArtmap:
     def calcularFuncionCoincidencia(self, entradaAumentada, pesoPrevio):
         valorCoincidencia = Utilidades.sumatoria(Utilidades.andDifuso(entradaAumentada, pesoPrevio)) / Utilidades.sumatoria(entradaAumentada    )
         return valorCoincidencia
+
+    def calcularNuevoPeso(self, entradaAumentada, pesoPrevio):
+        primero = [x * self.beta for x in entradaAumentada]
+        segundo = [x * (1-self.beta) for x in pesoPrevio]
+
+        nuevoPeso = []
+        for i in range(len(entradaAumentada)):
+            nuevoPeso.append(primero[i] + segundo[i])
+        return nuevoPeso
 
 class Resultados:
 

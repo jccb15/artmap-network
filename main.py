@@ -16,9 +16,6 @@ red.entrenar(datos.matrizDatos)
 datos.limpiarDatos
 datos.generarDatosEntrenamiento()
 
-print(red.predecir(.9, .75))
-print(red.predecir(.4, .5))
-
 circle2 = plt.Circle((.5, .5), 0.398, color='r')
 fig, ax = plt.subplots()
 ax.add_artist(circle2)

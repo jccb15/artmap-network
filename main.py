@@ -10,10 +10,10 @@ datos = am.DatosEntrenamiento()
 #    datos.ingresarDatoManual(dato[0], dato[1], dato[2])
 #--------------------------------------------------
 
-datos.generarDatosEntrenamiento(50)
+datos.generarDatosEntrenamiento(2000)
 red.entrenar(datos.matrizDatos)
 
-datos.limpiarDatos
+datos.limpiarDatos()
 datos.generarDatosEntrenamiento()
 
 circle2 = plt.Circle((.5, .5), 0.398, color='r')

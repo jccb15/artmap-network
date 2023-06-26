@@ -1,5 +1,12 @@
 import ARTMAP as am
 from matplotlib import pyplot as plt
+import argparse
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument("--entrenamiento", metavar="entrenamiento", type=int, help="cantidad de datos de entrenamiento", default=2000)
+parser.add_argument("--inferencia", metavar="entrenamiento", type=int, help="cantidad de datos de entrenamiento", default=1000)
+args = parser.parse_args()
 
 red = am.RedArtmap()
 
@@ -10,11 +17,11 @@ datos = am.DatosEntrenamiento()
 #    datos.ingresarDatoManual(dato[0], dato[1], dato[2])
 #--------------------------------------------------
 
-datos.generarDatosEntrenamiento(2000)
+datos.generarDatosEntrenamiento(args.entrenamiento)
 red.entrenar(datos.matrizDatos)
 
 datos.limpiarDatos()
-datos.generarDatosEntrenamiento()
+datos.generarDatosEntrenamiento(args.inferencia)
 
 circle2 = plt.Circle((.5, .5), 0.398, color='r')
 fig, ax = plt.subplots()
@@ -27,5 +34,5 @@ for dato in datos.matrizDatos:
         plt.plot(dato[0], dato[1], 'bo')
     else:
         plt.plot(dato[0], dato[1], 'ko')
-
+plt.gca().set_aspect('equal')
 plt.show()
